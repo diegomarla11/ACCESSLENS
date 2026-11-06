@@ -1,0 +1,35 @@
+{
+  "name": "accesslens",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 127.0.0.1",
+    "build": "tsc --noEmit && vite build",
+    "typecheck": "tsc --noEmit",
+    "test": "node --import tsx --test tests/*.test.ts",
+    "test:e2e": "playwright test",
+    "analyze": "node --import tsx scripts/analyze.ts",
+    "schema": "node --import tsx scripts/schema.ts",
+    "check": "npm run typecheck && npm test && npm run analyze && npm run build"
+  },
+  "dependencies": {
+    "react": "19.2.8",
+    "react-dom": "19.2.8",
+    "zod": "3.25.76",
+    "zod-to-json-schema": "3.25.2"
+  },
+  "devDependencies": {
+    "@types/node": "22.19.19",
+    "@types/react": "19.2.14",
+    "@types/react-dom": "19.2.3",
+    "vite": "8.3.5",
+    "typescript": "5.9.3",
+    "tsx": "4.23.15",
+    "playwright": "1.62.1",
+    "axe-core": "4.12.0"
+  },
+  "engines": {
+    "node": ">=22.22.3 <23"
+  }
+}

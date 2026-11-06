@@ -1,0 +1,196 @@
+{
+  "$ref": "#/definitions/Scenario",
+  "definitions": {
+    "Scenario": {
+      "type": "object",
+      "properties": {
+        "schemaVersion": {
+          "type": "string",
+          "const": "1.0"
+        },
+        "id": {
+          "type": "string",
+          "pattern": "^[a-zA-Z0-9_-]{1,64}$"
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "description": {
+          "type": "string",
+          "maxLength": 600
+        },
+        "resources": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "$ref": "#/definitions/Scenario/properties/id"
+              },
+              "name": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 120
+              }
+            },
+            "required": [
+              "id",
+              "name"
+            ],
+            "additionalProperties": false
+          },
+          "maxItems": 200
+        },
+        "permissions": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "$ref": "#/definitions/Scenario/properties/id"
+              },
+              "resourceId": {
+                "$ref": "#/definitions/Scenario/properties/id"
+              },
+              "action": {
+                "type": "string",
+                "enum": [
+                  "read",
+                  "write",
+                  "admin"
+                ]
+              }
+            },
+            "required": [
+              "id",
+              "resourceId",
+              "action"
+            ],
+            "additionalProperties": false
+          },
+          "maxItems": 200
+        },
+        "roles": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "$ref": "#/definitions/Scenario/properties/id"
+              },
+              "name": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 120
+              },
+              "permissionIds": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/Scenario/properties/id"
+                },
+                "maxItems": 200
+              }
+            },
+            "required": [
+              "id",
+              "name",
+              "permissionIds"
+            ],
+            "additionalProperties": false
+          },
+          "maxItems": 200
+        },
+        "identities": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "$ref": "#/definitions/Scenario/properties/id"
+              },
+              "name": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 120
+              },
+              "kind": {
+                "type": "string",
+                "enum": [
+                  "human",
+                  "service"
+                ]
+              },
+              "employment": {
+                "type": "string",
+                "enum": [
+                  "active",
+                  "terminated",
+                  "unknown"
+                ]
+              },
+              "enabled": {
+                "type": [
+                  "boolean",
+                  "null"
+                ]
+              },
+              "mfa": {
+                "type": [
+                  "boolean",
+                  "null"
+                ]
+              },
+              "roleIds": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/Scenario/properties/id"
+                },
+                "maxItems": 200
+              },
+              "requiredPermissionIds": {
+                "anyOf": [
+                  {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/definitions/Scenario/properties/id"
+                    },
+                    "maxItems": 200
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              }
+            },
+            "required": [
+              "id",
+              "name",
+              "kind",
+              "employment",
+              "enabled",
+              "mfa",
+              "roleIds",
+              "requiredPermissionIds"
+            ],
+            "additionalProperties": false
+          },
+          "maxItems": 200
+        }
+      },
+      "required": [
+        "schemaVersion",
+        "id",
+        "name",
+        "description",
+        "resources",
+        "permissions",
+        "roles",
+        "identities"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "$schema": "http://json-schema.org/draft-07/schema#"
+}

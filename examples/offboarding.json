@@ -1,0 +1,84 @@
+{
+  "schemaVersion": "1.0",
+  "id": "offboarding",
+  "name": "01 · Una baja pendiente",
+  "description": "Lucía dejó la organización. Su cuenta sigue habilitada y conserva acceso al ERP.",
+  "resources": [
+    {
+      "id": "erp",
+      "name": "ERP de operaciones"
+    },
+    {
+      "id": "cloud",
+      "name": "Consola cloud ficticia"
+    }
+  ],
+  "permissions": [
+    {
+      "id": "erp-read",
+      "resourceId": "erp",
+      "action": "read"
+    },
+    {
+      "id": "erp-write",
+      "resourceId": "erp",
+      "action": "write"
+    },
+    {
+      "id": "cloud-admin",
+      "resourceId": "cloud",
+      "action": "admin"
+    }
+  ],
+  "roles": [
+    {
+      "id": "reader",
+      "name": "Lectura ERP",
+      "permissionIds": [
+        "erp-read"
+      ]
+    },
+    {
+      "id": "operator",
+      "name": "Operación ERP",
+      "permissionIds": [
+        "erp-read",
+        "erp-write"
+      ]
+    },
+    {
+      "id": "admin",
+      "name": "Administración",
+      "permissionIds": [
+        "erp-read",
+        "cloud-admin"
+      ]
+    }
+  ],
+  "identities": [
+    {
+      "id": "lucia",
+      "name": "Lucía Vega",
+      "kind": "human",
+      "employment": "terminated",
+      "enabled": true,
+      "mfa": true,
+      "roleIds": [
+        "operator"
+      ],
+      "requiredPermissionIds": null
+    },
+    {
+      "id": "pablo",
+      "name": "Pablo Gil",
+      "kind": "human",
+      "employment": "active",
+      "enabled": true,
+      "mfa": null,
+      "roleIds": [
+        "reader"
+      ],
+      "requiredPermissionIds": null
+    }
+  ]
+}
