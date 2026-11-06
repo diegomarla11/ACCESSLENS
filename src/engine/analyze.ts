@@ -81,7 +81,7 @@ export function analyze(input: unknown): Finding[] {
       } else {
         base.title = "Servicio con permisos excesivos";
         base.proposal =
-          "Sustituir sus roles por un rol exclusivo con los permisos necesarios declarados.";
+          "Sustituir sus roles por un rol exclusivo que conserve solo los permisos actuales incluidos en la lista necesaria. No concede permisos nuevos.";
         base.evidence.push(
           `requiredPermissionIds = ${u.requiredPermissionIds === null ? "desconocido" : u.requiredPermissionIds.join(", ") || "(ninguno)"}`,
         );
@@ -119,13 +119,23 @@ export function remediate(input: unknown, findingId: string): Scenario {
   if (f.rule === "AL-01") u.enabled = false;
   if (f.rule === "AL-02") u.mfa = true;
   if (f.rule === "AL-03") {
+    // Remediation can only remove access. A declared requirement is not an
+    // authorization to grant a permission the service does not already hold.
+    const retainedPermissions = permissionsFor(s, u.id).filter((permission) =>
+      u.requiredPermissionIds!.includes(permission),
+    );
+    if (s.roles.length >= 200) {
+      throw new Error(
+        "No se puede crear el rol de corrección: el escenario ya contiene 200 roles.",
+      );
+    }
     let id = "least-privilege";
     let n = 1;
     while (s.roles.some((r) => r.id === id)) id = `least-privilege-${n++}`;
     s.roles.push({
       id,
-      name: `Mínimo privilegio · ${u.name}`,
-      permissionIds: [...u.requiredPermissionIds!],
+      name: `Mínimo privilegio · ${u.name}`.slice(0, 120),
+      permissionIds: retainedPermissions,
     });
     u.roleIds = [id];
   }

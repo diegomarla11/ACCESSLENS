@@ -1,18 +1,23 @@
 # Publicar en GitHub Pages
 
-## Estado
-No hay despliegue público verificado. La consulta del repositorio `diegomarla11/ACCESSLENS` devolvió 404 durante esta sesión: no se puede distinguir entre inexistencia y falta de acceso. El conector disponible no permite crear repositorios ni configurar Pages, y no hay CLI `gh` instalada. No se publica en otro alojamiento sin sustituir tu elección.
+## Estado tras el primer push
 
-## Pasos con GitHub Desktop
-1. Añadir esta carpeta como repositorio local. Si Desktop avisa de que no es un repositorio, usar «Create a repository here» con nombre `ACCESSLENS` y comprobar que no crea una carpeta anidada.
-2. Revisar los archivos incluidos: código, docs, ejemplos, pruebas, workflows y lockfile. `node_modules`, `dist` y resultados temporales están excluidos.
-3. Crear el primer commit. Publicar en tu cuenta como **público**, desmarcando «Keep this code private».
-4. En GitHub: Settings → Pages → Build and deployment → Source: **GitHub Actions**.
-5. Consultar Actions → Check and publish. Debe finalizar correctamente. El trabajo `deploy` solo se ejecuta en main después de que `verify` termine correctamente. También puede ejecutarse el workflow manualmente: vuelve a comprobar el proyecto antes de publicar.
-6. Abrir la URL que devuelva el despliegue; no dar por válida una URL deducida. Probar escenarios, exportaciones y recarga. El workflow configura la ruta base a partir del nombre del repositorio.
-7. Añadir esa URL a README y a «About» del repositorio solo después de comprobarla. El enlace al código se configura automáticamente durante el build de Pages.
+Existe una copia Git local con origen `https://github.com/diegomarla11/ACCESSLENS.git`; main y origin/main apuntaban a `7016a1b` durante la revisión. La URL devuelve 404 sin sesión y no se ha confirmado una demo pública. La conexión de GitHub disponible en ChatGPT está asociada a diegomarla2, por lo que no permite inspeccionar ese repositorio desde la cuenta propietaria.
 
-No hace falta cuenta cloud, tarjeta, dominio ni backend. Mantener main como rama inicial; si se cambia, actualizar el workflow. Las ejecuciones CI en Linux deben pasar antes de anunciar el proyecto: un build local en macOS no las verifica.
+El primer commit no incluía `.github/workflows/ci.yml` ni `.gitignore` y sí incluía `node_modules`. Esta revisión restaura ambos archivos. Para completar la limpieza hay que retirar las dependencias del seguimiento de Git con `git rm -r --cached --ignore-unmatch node_modules`; no se borran del disco. Ver [revisión](REVIEW-2026-11-06.md).
+
+## Publicación y comprobación
+
+1. Aplicar la revisión a la carpeta del repositorio. En GitHub Desktop comprobar que se añaden `.github/workflows/ci.yml` y `.gitignore`, y que las dependencias aparecen retiradas del seguimiento. No volver a copiarlas al repositorio.
+2. Ejecutar `npm ci`, `npm run check`, `npx playwright install chromium` y `npm run test:e2e`. Revisar los errores si los hubiera antes de publicar.
+3. Crear el commit de la corrección en GitHub Desktop y usar Push origin.
+4. Abrir el repositorio desde GitHub Desktop → Repository → View on GitHub, con la cuenta propietaria. Confirmar que la visibilidad es Public para que lo vean las empresas. Comprobar la misma URL sin sesión.
+5. En GitHub: Settings → Pages → Build and deployment → Source: **GitHub Actions**.
+6. Abrir Actions → **Check and publish**. El trabajo `verify` debe terminar correctamente y después `deploy`. Si el primer intento se produjo antes de configurar Pages, volver a ejecutar el workflow desde Actions.
+7. Abrir la URL devuelta por el despliegue y comprobar escenarios, exportaciones y recarga. El workflow usa el nombre real del repositorio como ruta base y configura el enlace al código mediante `VITE_REPOSITORY_URL`.
+8. Añadir la URL verificada a README y a About. El mensaje local «Código · pendiente de publicar» depende de esa variable de build: no comprueba GitHub en tiempo real. El primer push por sí solo no cambia la interfaz de `npm run dev`.
+
+No hace falta cuenta cloud, tarjeta, dominio ni backend. Mantener main como rama inicial; si se cambia, actualizar el workflow. No afirmar que Actions o Pages funcionan hasta comprobar una ejecución y su URL.
 
 Fuentes oficiales consultadas el 6-11-2026:
 - https://vite.dev/guide/static-deploy

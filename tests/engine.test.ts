@@ -90,6 +90,39 @@ describe("reglas y correcciones", () => {
     const fixed = remediate(s, "AL-03:svc-reports");
     expect(permissionsFor(fixed, "svc-reports")).toEqual([]);
   });
+  it("la corrección nunca concede permisos necesarios que la cuenta no tenía", () => {
+    const s = structuredClone(scenarios[2]);
+    s.identities[0].requiredPermissionIds = ["erp-read", "erp-write"];
+    const before = permissionsFor(s, "svc-reports");
+    const fixed = remediate(s, "AL-03:svc-reports");
+    const after = permissionsFor(fixed, "svc-reports");
+    assert.deepEqual(after, ["erp-read"]);
+    assert.ok(after.every((permission) => before.includes(permission)));
+    assert.equal(
+      analyze(fixed).find((f) => f.id === "AL-03:svc-reports")?.status,
+      "clear",
+    );
+  });
+  it("admite nombres de identidad de longitud máxima al crear el rol", () => {
+    const s = structuredClone(scenarios[2]);
+    s.identities[0].name = "a".repeat(120);
+    const fixed = remediate(s, "AL-03:svc-reports");
+    assert.ok(fixed.roles.at(-1)!.name.length <= 120);
+    assert.deepEqual(permissionsFor(fixed, "svc-reports"), ["erp-read"]);
+  });
+  it("explica el límite de roles sin alterar la entrada", () => {
+    const s = structuredClone(scenarios[2]);
+    while (s.roles.length < 200) {
+      s.roles.push({
+        id: `role-${s.roles.length}`,
+        name: "Rol",
+        permissionIds: [],
+      });
+    }
+    const original = structuredClone(s);
+    assert.throws(() => remediate(s, "AL-03:svc-reports"), /200 roles/);
+    assert.deepEqual(s, original);
+  });
   it("deduplica permisos heredados y evita colisiones de IDs", () => {
     const s = structuredClone(scenarios[2]);
     s.identities[0].roleIds = ["admin", "reader"];

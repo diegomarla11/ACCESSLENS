@@ -25,7 +25,9 @@ test("recorrido: escenarios, evidencia, corrección, exportaciones y reinicio", 
     await expect(page.locator(".finding.risk")).toHaveCount(0);
     await expect(page.locator(".comparison")).toContainText("1 → 0");
     await page.getByRole("tab", { name: /Inventario/ }).click();
-    await page.getByLabel("Tipo de entidad").selectOption("roles");
+    await page
+      .getByRole("combobox", { name: "Tipo de entidad" })
+      .selectOption("roles");
     await expect(page.locator(".inventory-list")).toContainText(
       "Administración",
     );
@@ -58,6 +60,15 @@ test("vista móvil, resumen inglés y navegación por teclado", async ({
   await expect(
     page.getByRole("link", { name: "Saltar al análisis" }),
   ).toBeFocused();
+  await page.getByRole("tab", { name: /Hallazgos/ }).focus();
+  await page.keyboard.press("ArrowRight");
+  await expect(page.getByRole("tab", { name: /Inventario/ })).toBeFocused();
+  await expect(page.getByRole("tab", { name: /Inventario/ })).toHaveAttribute(
+    "aria-selected",
+    "true",
+  );
+  await page.keyboard.press("Home");
+  await expect(page.getByRole("tab", { name: /Hallazgos/ })).toBeFocused();
   await page.getByRole("button", { name: /English summary/ }).click();
   await expect(page.locator("[lang=en]")).toBeVisible();
   await page.getByRole("button", { name: /Sin segundo factor/ }).click();

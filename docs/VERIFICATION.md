@@ -31,3 +31,7 @@ Se detectaron y corrigieron dos referencias equivocadas al ID del servicio en lo
 El workflow incluye tres tests de navegador: recorrido de los tres escenarios y exportaciones, móvil/teclado/resumen inglés, y axe sobre los tres casos. Esos tests deben pasar en un entorno que permita el servidor y Chromium antes de publicar. También revisar manualmente a 200 % de zoom y con teclado/lector de pantalla.
 
 No se ha verificado una auditoría actual de dependencias con acceso al registro. La salida de auditoría offline no demuestra ausencia de vulnerabilidades. No se ha modificado ningún CV ni perfil, ni contactado a empresas.
+
+## Actualización tras el primer push
+
+Se revisó la demo en funcionamiento y la copia del commit `7016a1b`. El recorrido manual, correcciones, reinicio y descargas ya se han comprobado en navegador. Una corrección posterior del motor pasa 23 tests, comprobación de tipos, CLI y build en la copia de trabajo. Siguen pendientes Playwright/axe completos, verificación remota y despliegue. Ver [revisión del primer push](REVIEW-2026-11-06.md) para el alcance exacto y los problemas encontrados en el repositorio.

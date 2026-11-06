@@ -122,7 +122,7 @@ function App() {
               Un permiso de más.
             </p>
             <span className="note-foot">
-              3 casos reales en concepto.
+              3 riesgos de acceso habituales.
               <br />
               100% datos sintéticos.
             </span>
@@ -274,6 +274,7 @@ function App() {
               >
                 <button
                   id="tab-review"
+                  tabIndex={tab === "review" ? 0 : -1}
                   aria-controls="panel-review"
                   role="tab"
                   aria-selected={tab === "review"}
@@ -283,6 +284,7 @@ function App() {
                 </button>
                 <button
                   id="tab-inventory"
+                  tabIndex={tab === "inventory" ? 0 : -1}
                   aria-controls="panel-inventory"
                   role="tab"
                   aria-selected={tab === "inventory"}
@@ -385,10 +387,18 @@ function App() {
                             <button
                               className="fix"
                               onClick={() => {
-                                setCurrent(remediate(current, f.id));
-                                setNotice(
-                                  `Corrección aplicada a ${f.identityId}. Resultados recalculados en la copia.`,
-                                );
+                                try {
+                                  setCurrent(remediate(current, f.id));
+                                  setNotice(
+                                    `Corrección aplicada a ${f.identityId}. Resultados recalculados en la copia.`,
+                                  );
+                                } catch (error) {
+                                  setNotice(
+                                    error instanceof Error
+                                      ? error.message
+                                      : "No se ha podido aplicar la corrección.",
+                                  );
+                                }
                               }}
                             >
                               Aplicar corrección en la copia <span>→</span>

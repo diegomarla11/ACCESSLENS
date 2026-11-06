@@ -1,0 +1,501 @@
+npm notice run accesslens@0.1.0 check
+npm notice run npm run typecheck && npm test && npm run analyze && npm run build
+npm notice run accesslens@0.1.0 typecheck
+npm notice run tsc --noEmit
+npm notice run accesslens@0.1.0 test
+npm notice run node --import tsx --test tests/*.test.ts
+TAP version 13
+# Subtest: reglas y correcciones
+    # Subtest: offboarding: detecta el riesgo previsto y lo elimina sin mutar el original
+    ok 1 - offboarding: detecta el riesgo previsto y lo elimina sin mutar el original
+      ---
+      duration_ms: 1.418
+      type: 'test'
+      ...
+    # Subtest: mfa: detecta el riesgo previsto y lo elimina sin mutar el original
+    ok 2 - mfa: detecta el riesgo previsto y lo elimina sin mutar el original
+      ---
+      duration_ms: 0.498667
+      type: 'test'
+      ...
+    # Subtest: service: detecta el riesgo previsto y lo elimina sin mutar el original
+    ok 3 - service: detecta el riesgo previsto y lo elimina sin mutar el original
+      ---
+      duration_ms: 0.917291
+      type: 'test'
+      ...
+    # Subtest: las reglas detectan las identidades esperadas
+    ok 4 - las reglas detectan las identidades esperadas
+      ---
+      duration_ms: 0.765041
+      type: 'test'
+      ...
+    # Subtest: los metadatos desconocidos no se convierten en aprobado
+    ok 5 - los metadatos desconocidos no se convierten en aprobado
+      ---
+      duration_ms: 0.278958
+      type: 'test'
+      ...
+    # Subtest: MFA desconocido y enabled desconocido requieren evaluación
+    ok 6 - MFA desconocido y enabled desconocido requieren evaluación
+      ---
+      duration_ms: 0.168708
+      type: 'test'
+      ...
+    # Subtest: deshabilitar una cuenta evita los riesgos activos aunque falten metadatos
+    ok 7 - deshabilitar una cuenta evita los riesgos activos aunque falten metadatos
+      ---
+      duration_ms: 0.300167
+      type: 'test'
+      ...
+    # Subtest: mínimo privilegio no modifica roles compartidos ni otras identidades
+    ok 8 - mínimo privilegio no modifica roles compartidos ni otras identidades
+      ---
+      duration_ms: 0.392
+      type: 'test'
+      ...
+    # Subtest: lista necesaria vacía elimina todos los permisos; null es desconocido
+    ok 9 - lista necesaria vacía elimina todos los permisos; null es desconocido
+      ---
+      duration_ms: 0.355792
+      type: 'test'
+      ...
+    # Subtest: la corrección nunca concede permisos necesarios que la cuenta no tenía
+    ok 10 - la corrección nunca concede permisos necesarios que la cuenta no tenía
+      ---
+      duration_ms: 0.616667
+      type: 'test'
+      ...
+    # Subtest: admite nombres de identidad de longitud máxima al crear el rol
+    ok 11 - admite nombres de identidad de longitud máxima al crear el rol
+      ---
+      duration_ms: 0.333625
+      type: 'test'
+      ...
+    # Subtest: explica el límite de roles sin alterar la entrada
+    ok 12 - explica el límite de roles sin alterar la entrada
+      ---
+      duration_ms: 3.656084
+      type: 'test'
+      ...
+    # Subtest: deduplica permisos heredados y evita colisiones de IDs
+    ok 13 - deduplica permisos heredados y evita colisiones de IDs
+      ---
+      duration_ms: 0.350792
+      type: 'test'
+      ...
+    # Subtest: rechaza correcciones inexistentes y no evaluadas
+    ok 14 - rechaza correcciones inexistentes y no evaluadas
+      ---
+      duration_ms: 0.22525
+      type: 'test'
+      ...
+    1..14
+ok 1 - reglas y correcciones
+  ---
+  duration_ms: 11.189208
+  type: 'suite'
+  ...
+# Subtest: contrato de entrada
+    # Subtest: rechaza entrada inválida 0
+    ok 1 - rechaza entrada inválida 0
+      ---
+      duration_ms: 0.320583
+      type: 'test'
+      ...
+    # Subtest: rechaza entrada inválida 1
+    ok 2 - rechaza entrada inválida 1
+      ---
+      duration_ms: 0.328416
+      type: 'test'
+      ...
+    # Subtest: rechaza entrada inválida 2
+    ok 3 - rechaza entrada inválida 2
+      ---
+      duration_ms: 0.097042
+      type: 'test'
+      ...
+    # Subtest: rechaza entrada inválida 3
+    ok 4 - rechaza entrada inválida 3
+      ---
+      duration_ms: 0.081
+      type: 'test'
+      ...
+    # Subtest: rechaza entrada inválida 4
+    ok 5 - rechaza entrada inválida 4
+      ---
+      duration_ms: 0.110292
+      type: 'test'
+      ...
+    # Subtest: rechaza referencias rotas y duplicados
+    ok 6 - rechaza referencias rotas y duplicados
+      ---
+      duration_ms: 0.231458
+      type: 'test'
+      ...
+    # Subtest: rechaza campos obligatorios ausentes y coerción de booleanos
+    ok 7 - rechaza campos obligatorios ausentes y coerción de booleanos
+      ---
+      duration_ms: 0.170375
+      type: 'test'
+      ...
+    1..7
+ok 2 - contrato de entrada
+  ---
+  duration_ms: 1.4275
+  type: 'suite'
+  ...
+# Subtest: informes
+    # Subtest: incluye antes/después recalculados
+    ok 1 - incluye antes/después recalculados
+      ---
+      duration_ms: 0.425125
+      type: 'test'
+      ...
+    # Subtest: escapa contenido HTML de los datos
+    ok 2 - escapa contenido HTML de los datos
+      ---
+      duration_ms: 0.484208
+      type: 'test'
+      ...
+    1..2
+ok 3 - informes
+  ---
+  duration_ms: 0.947709
+  type: 'suite'
+  ...
+1..3
+# tests 23
+# suites 3
+# pass 23
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 202.537417
+npm notice run accesslens@0.1.0 analyze
+npm notice run node --import tsx scripts/analyze.ts
+[
+  {
+    "scenario": "offboarding",
+    "evaluations": [
+      {
+        "id": "AL-01:lucia",
+        "rule": "AL-01",
+        "identityId": "lucia",
+        "severity": "Alta",
+        "reason": "La persona está dada de baja, pero su identidad sigue habilitada. No se comprueban sesiones ni accesos externos.",
+        "evidence": [
+          "identities.lucia.enabled = true",
+          "roles = operator",
+          "permisos efectivos = erp-read, erp-write",
+          "employment = terminated"
+        ],
+        "proposal": "Deshabilitar la identidad en la copia del escenario.",
+        "title": "Baja con acceso activo",
+        "status": "risk"
+      },
+      {
+        "id": "AL-02:lucia",
+        "rule": "AL-02",
+        "identityId": "lucia",
+        "severity": null,
+        "reason": "No se cumple la condición de riesgo.",
+        "evidence": [
+          "identities.lucia.enabled = true",
+          "roles = operator",
+          "permisos efectivos = erp-read, erp-write",
+          "mfa = true",
+          "permiso admin = false"
+        ],
+        "proposal": "Marcar MFA como habilitado en los metadatos de la copia. No configura MFA real.",
+        "title": "Administrador sin MFA",
+        "status": "clear"
+      },
+      {
+        "id": "AL-03:lucia",
+        "rule": "AL-03",
+        "identityId": "lucia",
+        "severity": null,
+        "reason": "No se cumple la condición de riesgo.",
+        "evidence": [
+          "identities.lucia.enabled = true",
+          "roles = operator",
+          "permisos efectivos = erp-read, erp-write",
+          "requiredPermissionIds = desconocido"
+        ],
+        "proposal": "Sustituir sus roles por un rol exclusivo que conserve solo los permisos actuales incluidos en la lista necesaria. No concede permisos nuevos.",
+        "title": "Servicio con permisos excesivos",
+        "status": "not-applicable"
+      },
+      {
+        "id": "AL-01:pablo",
+        "rule": "AL-01",
+        "identityId": "pablo",
+        "severity": null,
+        "reason": "No se cumple la condición de riesgo.",
+        "evidence": [
+          "identities.pablo.enabled = true",
+          "roles = reader",
+          "permisos efectivos = erp-read",
+          "employment = active"
+        ],
+        "proposal": "Deshabilitar la identidad en la copia del escenario.",
+        "title": "Baja con acceso activo",
+        "status": "clear"
+      },
+      {
+        "id": "AL-02:pablo",
+        "rule": "AL-02",
+        "identityId": "pablo",
+        "severity": null,
+        "reason": "No se cumple la condición de riesgo.",
+        "evidence": [
+          "identities.pablo.enabled = true",
+          "roles = reader",
+          "permisos efectivos = erp-read",
+          "mfa = null",
+          "permiso admin = false"
+        ],
+        "proposal": "Marcar MFA como habilitado en los metadatos de la copia. No configura MFA real.",
+        "title": "Administrador sin MFA",
+        "status": "clear"
+      },
+      {
+        "id": "AL-03:pablo",
+        "rule": "AL-03",
+        "identityId": "pablo",
+        "severity": null,
+        "reason": "No se cumple la condición de riesgo.",
+        "evidence": [
+          "identities.pablo.enabled = true",
+          "roles = reader",
+          "permisos efectivos = erp-read",
+          "requiredPermissionIds = desconocido"
+        ],
+        "proposal": "Sustituir sus roles por un rol exclusivo que conserve solo los permisos actuales incluidos en la lista necesaria. No concede permisos nuevos.",
+        "title": "Servicio con permisos excesivos",
+        "status": "not-applicable"
+      }
+    ]
+  },
+  {
+    "scenario": "mfa",
+    "evaluations": [
+      {
+        "id": "AL-01:nora",
+        "rule": "AL-01",
+        "identityId": "nora",
+        "severity": null,
+        "reason": "No se cumple la condición de riesgo.",
+        "evidence": [
+          "identities.nora.enabled = true",
+          "roles = admin",
+          "permisos efectivos = cloud-admin, erp-read",
+          "employment = active"
+        ],
+        "proposal": "Deshabilitar la identidad en la copia del escenario.",
+        "title": "Baja con acceso activo",
+        "status": "clear"
+      },
+      {
+        "id": "AL-02:nora",
+        "rule": "AL-02",
+        "identityId": "nora",
+        "severity": "Alta",
+        "reason": "Una identidad habilitada tiene permisos admin y MFA figura desactivado. El escenario no acredita la configuración de un proveedor.",
+        "evidence": [
+          "identities.nora.enabled = true",
+          "roles = admin",
+          "permisos efectivos = cloud-admin, erp-read",
+          "mfa = false",
+          "permiso admin = true"
+        ],
+        "proposal": "Marcar MFA como habilitado en los metadatos de la copia. No configura MFA real.",
+        "title": "Administrador sin MFA",
+        "status": "risk"
+      },
+      {
+        "id": "AL-03:nora",
+        "rule": "AL-03",
+        "identityId": "nora",
+        "severity": null,
+        "reason": "No se cumple la condición de riesgo.",
+        "evidence": [
+          "identities.nora.enabled = true",
+          "roles = admin",
+          "permisos efectivos = cloud-admin, erp-read",
+          "requiredPermissionIds = desconocido"
+        ],
+        "proposal": "Sustituir sus roles por un rol exclusivo que conserve solo los permisos actuales incluidos en la lista necesaria. No concede permisos nuevos.",
+        "title": "Servicio con permisos excesivos",
+        "status": "not-applicable"
+      },
+      {
+        "id": "AL-01:alex",
+        "rule": "AL-01",
+        "identityId": "alex",
+        "severity": null,
+        "reason": "No se cumple la condición de riesgo.",
+        "evidence": [
+          "identities.alex.enabled = true",
+          "roles = admin",
+          "permisos efectivos = cloud-admin, erp-read",
+          "employment = active"
+        ],
+        "proposal": "Deshabilitar la identidad en la copia del escenario.",
+        "title": "Baja con acceso activo",
+        "status": "clear"
+      },
+      {
+        "id": "AL-02:alex",
+        "rule": "AL-02",
+        "identityId": "alex",
+        "severity": null,
+        "reason": "No se conoce MFA o el estado de la cuenta administrativa.",
+        "evidence": [
+          "identities.alex.enabled = true",
+          "roles = admin",
+          "permisos efectivos = cloud-admin, erp-read",
+          "mfa = null",
+          "permiso admin = true"
+        ],
+        "proposal": "Marcar MFA como habilitado en los metadatos de la copia. No configura MFA real.",
+        "title": "Administrador sin MFA",
+        "status": "unknown"
+      },
+      {
+        "id": "AL-03:alex",
+        "rule": "AL-03",
+        "identityId": "alex",
+        "severity": null,
+        "reason": "No se cumple la condición de riesgo.",
+        "evidence": [
+          "identities.alex.enabled = true",
+          "roles = admin",
+          "permisos efectivos = cloud-admin, erp-read",
+          "requiredPermissionIds = desconocido"
+        ],
+        "proposal": "Sustituir sus roles por un rol exclusivo que conserve solo los permisos actuales incluidos en la lista necesaria. No concede permisos nuevos.",
+        "title": "Servicio con permisos excesivos",
+        "status": "not-applicable"
+      }
+    ]
+  },
+  {
+    "scenario": "service",
+    "evaluations": [
+      {
+        "id": "AL-01:svc-reports",
+        "rule": "AL-01",
+        "identityId": "svc-reports",
+        "severity": null,
+        "reason": "No se cumple la condición de riesgo.",
+        "evidence": [
+          "identities.svc-reports.enabled = true",
+          "roles = admin",
+          "permisos efectivos = cloud-admin, erp-read",
+          "employment = unknown"
+        ],
+        "proposal": "Deshabilitar la identidad en la copia del escenario.",
+        "title": "Baja con acceso activo",
+        "status": "not-applicable"
+      },
+      {
+        "id": "AL-02:svc-reports",
+        "rule": "AL-02",
+        "identityId": "svc-reports",
+        "severity": null,
+        "reason": "No se cumple la condición de riesgo.",
+        "evidence": [
+          "identities.svc-reports.enabled = true",
+          "roles = admin",
+          "permisos efectivos = cloud-admin, erp-read",
+          "mfa = null",
+          "permiso admin = true"
+        ],
+        "proposal": "Marcar MFA como habilitado en los metadatos de la copia. No configura MFA real.",
+        "title": "Administrador sin MFA",
+        "status": "not-applicable"
+      },
+      {
+        "id": "AL-03:svc-reports",
+        "rule": "AL-03",
+        "identityId": "svc-reports",
+        "severity": "Media",
+        "reason": "Los permisos concedidos superan la lista necesaria declarada. La gravedad depende de esa lista y del modelo simplificado.",
+        "evidence": [
+          "identities.svc-reports.enabled = true",
+          "roles = admin",
+          "permisos efectivos = cloud-admin, erp-read",
+          "requiredPermissionIds = erp-read",
+          "exceso = cloud-admin"
+        ],
+        "proposal": "Sustituir sus roles por un rol exclusivo que conserve solo los permisos actuales incluidos en la lista necesaria. No concede permisos nuevos.",
+        "title": "Servicio con permisos excesivos",
+        "status": "risk"
+      },
+      {
+        "id": "AL-01:svc-legacy",
+        "rule": "AL-01",
+        "identityId": "svc-legacy",
+        "severity": null,
+        "reason": "No se cumple la condición de riesgo.",
+        "evidence": [
+          "identities.svc-legacy.enabled = true",
+          "roles = reader",
+          "permisos efectivos = erp-read",
+          "employment = unknown"
+        ],
+        "proposal": "Deshabilitar la identidad en la copia del escenario.",
+        "title": "Baja con acceso activo",
+        "status": "not-applicable"
+      },
+      {
+        "id": "AL-02:svc-legacy",
+        "rule": "AL-02",
+        "identityId": "svc-legacy",
+        "severity": null,
+        "reason": "No se cumple la condición de riesgo.",
+        "evidence": [
+          "identities.svc-legacy.enabled = true",
+          "roles = reader",
+          "permisos efectivos = erp-read",
+          "mfa = null",
+          "permiso admin = false"
+        ],
+        "proposal": "Marcar MFA como habilitado en los metadatos de la copia. No configura MFA real.",
+        "title": "Administrador sin MFA",
+        "status": "not-applicable"
+      },
+      {
+        "id": "AL-03:svc-legacy",
+        "rule": "AL-03",
+        "identityId": "svc-legacy",
+        "severity": null,
+        "reason": "Falta conocer el estado o la lista de permisos necesarios validada por el propietario.",
+        "evidence": [
+          "identities.svc-legacy.enabled = true",
+          "roles = reader",
+          "permisos efectivos = erp-read",
+          "requiredPermissionIds = desconocido"
+        ],
+        "proposal": "Sustituir sus roles por un rol exclusivo que conserve solo los permisos actuales incluidos en la lista necesaria. No concede permisos nuevos.",
+        "title": "Servicio con permisos excesivos",
+        "status": "unknown"
+      }
+    ]
+  }
+]
+npm notice run accesslens@0.1.0 build
+npm notice run tsc --noEmit && vite build
+vite v8.3.5 building client environment for production...
+transforming...
+✓ 29 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                   0.60 kB │ gzip:  0.37 kB
+dist/assets/index-DgXmixe5.css   11.60 kB │ gzip:  3.23 kB
+dist/assets/index-Bssf9vCF.js   268.91 kB │ gzip: 79.89 kB
+
+✓ built in 91ms
