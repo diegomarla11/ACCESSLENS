@@ -2,6 +2,14 @@
 
 Laboratorio de revisión de accesos de **Diego Martínez Lafuente**. Una organización ficticia, tres riesgos explicables y correcciones reversibles. Datos sintéticos; análisis real sobre un RBAC propio. Proyecto personal de aprendizaje, sin integración IAM empresarial.
 
+## Probar la demo online
+
+### [Abrir ACCESSLENS →](https://diegomarla11.github.io/ACCESSLENS/)
+
+Acceso público desde el navegador, **sin registro ni instalación**. Disponible en ordenador y móvil.
+
+En menos de dos minutos: elige uno de los tres escenarios, consulta la evidencia de un hallazgo y aplica una corrección sobre la copia para comparar el antes y el después. Puedes reiniciar el escenario y exportar los resultados. Todos los datos son sintéticos y se procesan en tu navegador.
+
 ## Probar en local
 
 Node **22.22.3 o posterior de la rama 22** y npm.
@@ -32,7 +40,7 @@ Tres escenarios: baja activa, administrador sin MFA según metadatos y servicio 
 
 ## Límites y estado
 
-Solo tres reglas. «Sin hallazgo» no significa seguro. «No evaluado» identifica datos insuficientes. Las correcciones no cambian MFA ni accesos de un proveedor. Sin AWS, Keycloak, IA ni certificaciones. El enlace público se añadirá solo después de publicar y comprobar la demo. Ver [evidencias y estado real](docs/VERIFICATION.md).
+Solo tres reglas. «Sin hallazgo» no significa seguro. «No evaluado» identifica datos insuficientes. Las correcciones no cambian MFA ni accesos de un proveedor. Sin AWS, Keycloak, IA ni certificaciones. Demo publicada en GitHub Pages y comprobada el 6 de noviembre de 2026. Ver [evidencias y estado real](docs/VERIFICATION.md).
 
 ## Documentación
 
